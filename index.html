@@ -4,17 +4,165 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terminal Portfolio</title>
-    <!-- Link to external CSS file -->
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: #18181b;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .background {
+            position: fixed;
+            inset: 0;
+            background-color: #18181b;
+        }
+
+        .gradient {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom right, #27272a, #18181b);
+        }
+
+        .blob {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.2;
+            background: radial-gradient(circle, rgba(124,58,237,0.3) 0%, rgba(67,56,202,0.1) 70%);
+            transform: translate(-50%, -50%);
+            will-change: transform;
+            pointer-events: none;
+        }
+
+        .terminal-container {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            height: 80vh;
+            max-height: 600px;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(12px);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(24, 24, 27, 0.7);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+                        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            gap: 0.5rem;
+        }
+
+        .terminal-tab {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            font-size: 0.875rem;
+        }
+
+        .terminal-tab-icon {
+            color: #a855f7;
+        }
+
+        .terminal-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+        }
+
+        .history {
+            margin-bottom: 1rem;
+            font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+        }
+
+        .history-item {
+            margin-bottom: 0.75rem;
+            white-space: pre-wrap;
+            line-height: 1.5;
+        }
+
+        .input-line {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .prompt {
+            color: #a855f7;
+            font-weight: bold;
+        }
+
+        .input {
+            flex: 1;
+            background: none;
+            border: none;
+            color: white;
+            font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+            font-size: 0.875rem;
+            outline: none;
+            caret-color: #a855f7;
+        }
+
+        .command {
+            color: #22c55e;
+        }
+
+        .error {
+            color: #ef4444;
+        }
+
+        /* Scrollbar Styling */
+        .terminal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .terminal-content::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .terminal-content::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        .terminal-content::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Custom selection color */
+        ::selection {
+            background: rgba(168, 85, 247, 0.4);
+            color: white;
+        }
+    </style>
 </head>
 <body>
-    <!-- Background Elements -->
     <div class="background">
         <div class="gradient"></div>
         <div class="blob"></div>
     </div>
-
-    <!-- Terminal Container -->
+    
     <div class="terminal-container">
         <div class="terminal-header">
             <div class="terminal-tab">
@@ -33,7 +181,176 @@
         </div>
     </div>
 
-    <!-- Link to external JavaScript file -->
-    <script src="script.js"></script>
+    <script>
+        class TerminalPortfolio {
+            constructor() {
+                this.input = document.querySelector('.input');
+                this.history = document.querySelector('.history');
+                this.blob = document.querySelector('.blob');
+                this.content = document.querySelector('.terminal-content');
+                
+                this.mousePos = { x: 0, y: 0 };
+                this.targetPos = { x: 0, y: 0 };
+                
+                this.initializeHistory();
+                this.setupEventListeners();
+                this.startBlobAnimation();
+            }
+
+            initializeHistory() {
+                this.addToHistory('Welcome to my terminal portfolio. Type "help" to see available commands.', 'output');
+            }
+
+            setupEventListeners() {
+                // Handle input submission
+                this.input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        const command = this.input.value.trim();
+                        if (command) {
+                            this.handleCommand(command);
+                            this.input.value = '';
+                        }
+                    }
+                });
+
+                // Handle mouse movement
+                window.addEventListener('mousemove', (e) => {
+                    this.targetPos = {
+                        x: e.clientX,
+                        y: e.clientY
+                    };
+                });
+
+                // Keep input focused
+                window.addEventListener('click', () => {
+                    this.input.focus();
+                });
+            }
+
+            startBlobAnimation() {
+                const animateBlob = () => {
+                    this.mousePos = {
+                        x: this.mousePos.x + (this.targetPos.x - this.mousePos.x) * 0.1,
+                        y: this.mousePos.y + (this.targetPos.y - this.mousePos.y) * 0.1
+                    };
+
+                    this.blob.style.left = `${this.mousePos.x}px`;
+                    this.blob.style.top = `${this.mousePos.y}px`;
+
+                    requestAnimationFrame(animateBlob);
+                };
+
+                requestAnimationFrame(animateBlob);
+            }
+
+            addToHistory(content, type) {
+                const item = document.createElement('div');
+                item.className = `history-item ${type}`;
+                
+                if (type === 'command') {
+                    item.innerHTML = `<span class="prompt">→</span> ${content}`;
+                } else {
+                    item.textContent = content;
+                }
+                
+                this.history.appendChild(item);
+                this.scrollToBottom();
+            }
+
+            scrollToBottom() {
+                this.content.scrollTop = this.content.scrollHeight;
+            }
+
+            handleCommand(command) {
+                this.addToHistory(command, 'command');
+
+                switch (command.toLowerCase()) {
+                    case 'help':
+                        this.addToHistory(`Available commands:
+• help - Show this help message
+• about - Learn about me
+• projects - View my projects
+• contact - Get my contact information
+• skills - View my technical skills
+• clear - Clear the terminal`, 'output');
+                        break;
+                    
+                    case 'about':
+                        this.addToHistory(`About Me:
+I'm a passionate software developer with a love for creating intuitive and engaging web experiences. I specialize in full-stack development and enjoy building interactive applications that solve real-world problems.
+
+Currently focused on:
+• Web Development
+• UI/UX Design
+• System Architecture
+• Open Source Contribution`, 'output');
+                        break;
+                    
+                    case 'projects':
+                        this.addToHistory(`My Projects:
+
+1. Terminal Portfolio
+   An interactive terminal-style portfolio showcasing my work
+   Technologies: HTML, CSS, JavaScript
+   
+2. Project Management Dashboard
+   A comprehensive project management solution
+   Technologies: React, Node.js, MongoDB
+
+3. E-commerce Platform
+   A full-featured online shopping platform
+   Technologies: Next.js, PostgreSQL, Stripe
+
+4. Weather App
+   Real-time weather forecasting application
+   Technologies: React, OpenWeather API`, 'output');
+                        break;
+                    
+                    case 'contact':
+                        this.addToHistory(`Let's Connect!
+
+• Email: example@example.com
+• GitHub: github.com/example
+• LinkedIn: linkedin.com/in/example
+• Twitter: @example
+
+Feel free to reach out for collaboration or just to say hi!`, 'output');
+                        break;
+
+                    case 'skills':
+                        this.addToHistory(`Technical Skills:
+
+Languages:
+• JavaScript/TypeScript
+• Python
+• SQL
+• HTML/CSS
+
+Frameworks & Libraries:
+• React/Next.js
+• Node.js/Express
+• TailwindCSS
+• MongoDB
+
+Tools & Platforms:
+• Git
+• Docker
+• AWS
+• Figma`, 'output');
+                        break;
+                    
+                    case 'clear':
+                        this.history.innerHTML = '';
+                        break;
+                    
+                    default:
+                        this.addToHistory(`Command not found: ${command}. Type "help" for available commands.`, 'error');
+                }
+            }
+        }
+
+        // Initialize the terminal
+        new TerminalPortfolio();
+    </script>
 </body>
 </html>
