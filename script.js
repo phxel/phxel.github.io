@@ -106,20 +106,20 @@ Currently focused on:
                 this.addToHistory(`My Projects:
 
 1. Terminal Portfolio
-An interactive terminal-style portfolio showcasing my work
-Technologies: HTML, CSS, JavaScript
-
+   An interactive terminal-style portfolio showcasing my work
+   Technologies: HTML, CSS, JavaScript
+   
 2. Project Management Dashboard
-A comprehensive project management solution
-Technologies: React, Node.js, MongoDB
+   A comprehensive project management solution
+   Technologies: React, Node.js, MongoDB
 
 3. E-commerce Platform
-A full-featured online shopping platform
-Technologies: Next.js, PostgreSQL, Stripe
+   A full-featured online shopping platform
+   Technologies: Next.js, PostgreSQL, Stripe
 
 4. Weather App
-Real-time weather forecasting application
-Technologies: React, OpenWeather API`, 'output');
+   Real-time weather forecasting application
+   Technologies: React, OpenWeather API`, 'output');
                 break;
             
             case 'contact':
