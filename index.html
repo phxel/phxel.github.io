@@ -31,7 +31,19 @@
         .gradient {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom right, #27272a, #18181b);
+            background: #283048;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(45deg, #859398, #283048);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(45deg, #859398, #283048); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        }
+
+        .gradient::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            opacity: 0.02;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            pointer-events: none;
         }
 
         .blob {
@@ -41,7 +53,7 @@
             border-radius: 50%;
             filter: blur(150px);
             opacity: 0.2;
-            background: radial-gradient(circle, rgba(124,58,237,0.3) 0%, rgba(67,56,202,0.1) 70%);
+            background: radial-gradient(circle, rgba(152, 92, 255, 0.774) 0%, rgba(67,56,202,0.1) 70%);
             transform: translate(-50%, -50%);
             will-change: transform;
             pointer-events: none;
@@ -125,7 +137,9 @@
         }
 
         .command {
-            color: #22c55e;
+            color: #ffffff;
+            font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+            font-size: 0.875rem;
         }
 
         .error {
@@ -198,7 +212,7 @@
             }
 
             initializeHistory() {
-                this.addToHistory('Welcome to my terminal portfolio. Type "help" to see available commands.', 'output');
+                this.addToHistory('Type "help" to see available commands.', 'output');
             }
 
             setupEventListeners() {
@@ -270,73 +284,66 @@
 • help - Show this help message
 • about - Learn about me
 • projects - View my projects
-• contact - Get my contact information
 • skills - View my technical skills
 • clear - Clear the terminal`, 'output');
                         break;
                     
                     case 'about':
                         this.addToHistory(`About Me:
-I'm a passionate software developer with a love for creating intuitive and engaging web experiences. I specialize in full-stack development and enjoy building interactive applications that solve real-world problems.
+Hey, I am phxel. I am a passionate software developer with an interest in low-level stuff. I specialize in Rust, Go and some bash here and there. I also tend to create modifications for games, and have a fascination for old computers.
 
 Currently focused on:
-• Web Development
-• UI/UX Design
-• System Architecture
-• Open Source Contribution`, 'output');
+• Kernel Development
+• Networking
+• Philosophy
+• Learning Go`, 'output');
                         break;
                     
                     case 'projects':
                         this.addToHistory(`My Projects:
 
 1. Terminal Portfolio
-   An interactive terminal-style portfolio showcasing my work
+   This thing. You are currently on it.
    Technologies: HTML, CSS, JavaScript
    
-2. Project Management Dashboard
-   A comprehensive project management solution
-   Technologies: React, Node.js, MongoDB
+2. RustOS
+   An OS that uses the kernel showcased on Philipp Oppermann's blog.
+   I have added a basic CLI, and some filesystem stuff that doesn't work yet.
+   Technologies: Rust, QEMU
 
-3. E-commerce Platform
-   A full-featured online shopping platform
-   Technologies: Next.js, PostgreSQL, Stripe
+3. My dotfiles
+   I was frustrated with the dotfiles that were available for Hyprland,
+   so I made my own. These are subject to change over time.
+   Technologies: JSONC, Bash, CSS, whatever Hyprland uses for configs
 
-4. Weather App
-   Real-time weather forecasting application
-   Technologies: React, OpenWeather API`, 'output');
+4. BlackOps2LanLauncher/BlackOps2ServerLauncher
+   Two launchers that automate the process of creating a server for Plutonium.
+   Useful if you want to host a LAN Tournament and want to play Black Ops 2.
+   Technologies: Go, fyne, UDP Broadcasting, Powershell`, 'output');
                         break;
                     
-                    case 'contact':
-                        this.addToHistory(`Let's Connect!
-
-• Email: example@example.com
-• GitHub: github.com/example
-• LinkedIn: linkedin.com/in/example
-• Twitter: @example
-
-Feel free to reach out for collaboration or just to say hi!`, 'output');
-                        break;
 
                     case 'skills':
                         this.addToHistory(`Technical Skills:
 
 Languages:
-• JavaScript/TypeScript
+• Java
 • Python
-• SQL
-• HTML/CSS
+• Bash
+• Go
+• Rust
+• HTML/CSS/JavaScript
 
-Frameworks & Libraries:
-• React/Next.js
-• Node.js/Express
-• TailwindCSS
-• MongoDB
 
 Tools & Platforms:
 • Git
 • Docker
-• AWS
-• Figma`, 'output');
+
+
+Operating Systems:
+• Arch Linux
+• Debian
+• Ubuntu`, 'output');
                         break;
                     
                     case 'clear':
