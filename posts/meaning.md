@@ -18,11 +18,11 @@ This approach also repositions *Maslow's hierarchy of needs*: *life itself* shou
 
 ## The Subject Before Existence
 
-In traditional thought, existence is taken as a given, a backdrop against which the drama of life unfolds. My approach, however, places the *subject*—the conscious observer—*before existence*. Without a subject to perceive, interpret, and give meaning, existence itself would be devoid of significance. There would be no experience, no interpretation, and no consciousness to render existence meaningful.
+In traditional thought, existence (life) is taken as a given, a backdrop against which the drama of life unfolds. My approach, however, places the *subject*—the conscious observer—*before existence*. Without a subject to perceive, interpret, and give meaning, existence itself would be devoid of significance. There would be no experience, no interpretation, and no consciousness to render existence meaningful.
 
 Consider this: if existence were a vast, silent canvas with no observers, what would be the point of its colors or shapes? It is the conscious subject that gives form, value, and meaning to existence. The universe could be filled with objects, laws, and structures, but without an observer, these elements would be like unread pages in a book—filled with content but devoid of significance.
 
-In my perspective, *existence functions as a pair of binoculars through which the subject perceives the world*. The binoculars enable the observer to see and interpret, but without them, there would be no perception, no "image," and ultimately, no meaning. This places the observer at the core of all experience, making the subject a prerequisite for any kind of meaningful existence. Without the observer, existence would be an unobserved, uninterpreted vastness.
+In my perspective, *existence (life) functions as a pair of binoculars through which the subject perceives the world*. The binoculars enable the observer to see and interpret, but without them, there would be no perception, no "image," and ultimately, no meaning. This places the observer at the core of all experience, making the subject a prerequisite for any kind of meaningful existence. Without the observer, existence would be an unobserved, uninterpreted vastness.
 
 ## The Boundaries of Scientific Realism
 
