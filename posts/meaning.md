@@ -14,7 +14,7 @@ In the early days of humanity, meaning was simple and concrete: survival. Food, 
 
 Take, for example, the way we derive meaning from relationships. While love or friendship isn’t a literal survival need, these bonds fulfill deep psychological necessities. Relationships give structure and significance to our lives, but they only hold meaning because we, as subjects, experience the need for companionship and connection. In this sense, meaning is a human creation, continuously constructed out of our needs and desires.
 
-This approach also repositions *Maslow's hierarchy of needs*: *life itself* should be seen as the ultimate necessity at the base of the pyramid. Without life, there is no basis for fulfilling any needs, whether physical or psychological. This foundational layer supports all other needs, creating a system where meaning is generated through the lived experience of necessity.
+This approach also repositions *Maslow's hierarchy of needs*: *life, or existence itself* should be seen as the ultimate necessity at the base of the pyramid. Without existence/life, there is no basis for fulfilling any needs, whether physical or psychological. This foundational layer supports all other needs, creating a system where meaning is generated through the lived experience of necessity.
 
 ## The Subject Before Existence
 
