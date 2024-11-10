@@ -82,7 +82,7 @@ class BlogManager {
       const loadingEl = this.showLoading();
       
       // Fetch and parse directory listing
-      const response = await fetch(this.config.postsDirectory);
+      const response = await fetch(`${window.location.origin}/${this.config.postsDirectory}${normalizedFilename}`);
       const html = await response.text();
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, 'text/html');
