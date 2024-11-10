@@ -1,0 +1,396 @@
+@import url("fonts/fira_code.css");
+@import url("fonts/wittgenstein.css");
+
+/* Reset and base styles */
+:root {
+  --primary: #8b5cf6;
+  --background: #18181b;
+  --surface: #27272a;
+  --text: #ffffff;
+  --text-secondary: #d4d4d8;
+  --transition: all 0.3s ease;
+}
+
+/* Dark mode support */
+.dark {
+  --primary: #8b5cf6;
+  --background: #18181b;
+  --surface: #27272a;
+  --text: #ffffff;
+  --text-secondary: #d4d4d8;
+}
+
+/* Light mode colors */
+:root:not(.dark) {
+  --primary: #6d28d9;
+  --background: #f4f4f5;
+  --surface: #ffffff;
+  --text: #18181b;
+  --text-secondary: #52525b;
+}
+
+/* Global styles */
+body {
+  font-family: 'Fira Code', monospace;
+  background-color: var(--background);
+  color: var(--text);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Accessibility - Skip link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--primary);
+  color: var(--text);
+  padding: 8px;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Header styles */
+.site-header {
+  width: 100%;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.header-content {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+}
+
+.site-title {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+
+/* Theme toggle button */
+#theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: var(--transition);
+  position: absolute;
+  right: 1rem;
+}
+
+#theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* Main content */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  flex-grow: 1;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Post list styles */
+.posts-section {
+  width: 100%;
+  max-width: 800px;
+}
+
+#post-list {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+}
+
+#post-list li {
+  margin-bottom: 1rem;
+  cursor: pointer;
+  color: var(--primary);
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: var(--transition);
+}
+
+#post-list li:hover {
+  color: var(--text);
+  background-color: var(--surface);
+  transform: translateY(-2px);
+}
+
+/* Post content styles */
+#post-content {
+  width: 100%;
+  max-width: 800px;
+  padding: 2rem;
+  background-color: var(--surface);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 2rem auto;
+}
+
+/* Post metadata */
+.post-metadata {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+#post-tags .tag {
+  display: inline-block;
+  padding: 0.2rem 0.8rem;
+  margin: 0.2rem;
+  border-radius: 999px;
+  background-color: var(--primary);
+  color: var(--text);
+  font-size: 0.8rem;
+}
+
+/* Post navigation */
+.post-navigation {
+  margin-bottom: 2rem;
+}
+
+#back-button, .nav-post {
+  font-family: 'Fira Code', monospace;
+  color: var(--primary);
+  background-color: transparent;
+  border: 1px solid var(--primary);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+#back-button:hover, .nav-post:hover:not(:disabled) {
+  color: var(--text);
+  background-color: var(--primary);
+}
+
+.nav-post:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Post content typography */
+#post-body {
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+#post-body h1, 
+#post-body h2, 
+#post-body h3, 
+#post-body h4 {
+  color: var(--text);
+  margin-top: 2rem;
+}
+
+#post-body a {
+  color: var(--primary);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--primary);
+}
+
+#post-body a:hover {
+  border-bottom-style: solid;
+}
+
+#post-body pre {
+  background-color: var(--background);
+  padding: 1rem;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+#post-body code {
+  font-family: 'Fira Code', monospace;
+  background-color: var(--background);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+
+/* Footer navigation */
+.post-navigation-bottom {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--surface);
+}
+
+#prev-next-posts {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* Progress bar */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background-color: var(--primary);
+  width: 0%;
+  transition: width 0.1s ease;
+  z-index: 1000;
+}
+
+/* Toast notifications */
+.toast-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1000;
+}
+
+.toast {
+  background-color: var(--surface);
+  color: var(--text);
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.3s ease;
+}
+
+.toast.fade-out {
+  animation: slideOut 0.3s ease;
+}
+
+/* Site footer */
+.site-footer {
+  width: 100%;
+  text-align: center;
+  padding: 2rem 0;
+  color: var(--text-secondary);
+  margin-top: auto; /* Push footer to the bottom when content is short */
+}
+
+/* Loading and error states */
+.loading, .error {
+  text-align: center;
+  padding: 2rem;
+}
+
+.loading {
+  color: var(--primary);
+}
+
+.error {
+  color: #ef4444;
+}
+
+.profile-picture {
+  width: 50px; /* Adjust size as needed */
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid var(--primary); /* Optional: Border color */
+  object-fit: cover; /* Ensures the image scales well */
+  margin-right: 1rem; /* Space between image and title */
+  transition: var(--transition);
+  position: absolute;
+  left: 1rem;
+}
+
+.profile-picture:hover {
+  transform: scale(1.05); /* Subtle zoom effect on hover */
+}
+
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  #post-content {
+    padding: 1rem;
+    margin: 1rem;
+  }
+
+  .post-metadata {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  #prev-next-posts {
+    flex-direction: column;
+  }
+
+  .nav-post {
+    width: 100%;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white;
+  }
+
+  #post-content {
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .post-navigation,
+  .post-navigation-bottom,
+  #theme-toggle,
+  .progress-bar {
+    display: none;
+  }
+}

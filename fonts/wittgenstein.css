@@ -1,0 +1,35 @@
+@font-face {
+    font-family: 'Wittgenstein';
+    src: url('Wittgenstein-Light.woff2') format('woff2'),
+      url("Wittgenstein-Light.woff") format("woff");
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Wittgenstein';
+    src: url('Wittgenstein-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Wittgenstein';
+    src: url('Wittgenstein-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Wittgenstein';
+    src: url('Wittgenstein-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Wittgenstein';
+    src: url('Wittgenstein-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+  }

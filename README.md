@@ -1,2 +1,2 @@
 # phxel.github.io
-my personal website
+my personal website / blog
